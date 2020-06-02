@@ -22,11 +22,11 @@ process.sql = mysql.createConnection({
   database: 'stalasmysql'
 })
 
-fs.readdirSync('./app/routes/').forEach(file => {
+fs.readdirSync('./routes/').forEach(file => {
   app.use(require(`./routes/${file}`))
 })
 
-const port = process.env.PORT || 3003
+const port = process.env.PORT || 3004
 app.listen(port, () => {
   console.log(`Listening on port ${port}`)
 })
