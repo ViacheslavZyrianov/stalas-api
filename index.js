@@ -1,5 +1,4 @@
 const express = require('express')
-const history = require('connect-history-api-fallback')
 const serveStatic = require('serve-static')
 const app = express()
 const morgan = require('morgan')
@@ -12,7 +11,6 @@ app.use(function(req, res, next) {
 })
 
 app.use(morgan('short'))
-app.use(history())
 app.use(serveStatic('dist'))
 
 process.sql = mysql.createConnection({
