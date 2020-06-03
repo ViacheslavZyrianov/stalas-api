@@ -6,7 +6,7 @@ router.get('/products', (req, res) => {
       console.log('Error occured', err)
       res.sendStatus(500)
     }
-    console.log('query parameters', req.query)
+    // console.log('query parameters', req.query)
     res.json(rows)
   })
 })
@@ -17,7 +17,7 @@ router.get('/product-columns', (req, res) => {
       console.log('Error occured', err)
       res.sendStatus(500)
     }
-    console.log('query parameters', req.query)
+    // console.log('query parameters', req.query)
     res.json(rows)
   })
 })
