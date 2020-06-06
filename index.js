@@ -13,7 +13,7 @@ app.use(function(req, res, next) {
 app.use(morgan('short'))
 app.use(serveStatic('dist'))
 
-process.sql = mysql.createConnection({
+process.sql = mysql.createPool({
   host: 'den1.mysql3.gear.host',
   user: 'stalasmysql',
   password: 'Fz2qB9Tr6N_?',
