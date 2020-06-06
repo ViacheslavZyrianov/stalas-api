@@ -1,7 +1,7 @@
 const router = require('express').Router()
 
 router.get('/products', (req, res) => {
-  process.sql.query(`SELECT * FROM products LIMIT ${req.query.offset - 1}, ${req.query.limit}`, (err, rows) => {
+  process.sql.query(`SELECT * FROM products LIMIT ${req.query.offset}, ${req.query.limit}`, (err, rows) => {
     if (err) {
       console.log('Error occured', err)
       res.sendStatus(500)
