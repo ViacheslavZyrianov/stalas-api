@@ -17,7 +17,8 @@ process.sql = mysql.createPool({
   host: 'den1.mysql3.gear.host',
   user: 'stalasmysql',
   password: 'Fz2qB9Tr6N_?',
-  database: 'stalasmysql'
+  database: 'stalasmysql',
+  multipleStatements: true
 })
 
 fs.readdirSync('./routes/').forEach(file => {
