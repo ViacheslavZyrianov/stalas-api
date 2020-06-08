@@ -1,12 +1,23 @@
 const router = require('express').Router()
 
 router.get('/products', (req, res) => {
-  process.sql.query(`SELECT * FROM products LIMIT ${req.query.offset}, ${req.query.limit}`, (err, rows) => {
+  const sqlQuery = [
+    'SELECT COUNT(id) FROM products',
+    `SELECT * FROM products LIMIT ${req.query.offset}, ${req.query.limit}`
+  ].join(';')
+
+  process.sql.query(sqlQuery, (err, rows) => {
     if (err) {
       console.log('Error occured', err)
       res.sendStatus(500)
     }
-    res.json(rows)
+    res.json({
+      config: {
+        total: rows[0][0]['COUNT(id)']
+      },
+      list: rows[1]
+    })
+    res.end()
   })
 })
 
