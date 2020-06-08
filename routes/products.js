@@ -1,9 +1,13 @@
 const router = require('express').Router()
 
 router.get('/products', (req, res) => {
+  const orderBy = {
+    column: req.query.orderBy.split(',')[0] || 'id',
+    direction: req.query.orderBy.split(',')[1] || 'desc'
+  }
   const sqlQuery = [
     'SELECT COUNT(id) FROM products',
-    `SELECT * FROM products LIMIT ${req.query.offset}, ${req.query.limit}`
+    `SELECT * FROM products ORDER BY ${orderBy.column} ${orderBy.direction} LIMIT ${req.query.offset}, ${req.query.limit}`
   ].join(';')
 
   process.sql.query(sqlQuery, (err, rows) => {
