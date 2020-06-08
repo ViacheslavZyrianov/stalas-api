@@ -2,8 +2,8 @@ const router = require('express').Router()
 
 router.get('/products', (req, res) => {
   const orderBy = {
-    column: req.query.orderBy.split(',')[0] || 'id',
-    direction: req.query.orderBy.split(',')[1] || 'desc'
+    column: req.query.orderBy.split(',')[0],
+    direction: req.query.orderBy.split(',')[1]
   }
   const sqlQuery = [
     'SELECT COUNT(id) FROM products',
