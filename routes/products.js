@@ -25,6 +25,11 @@ router.get('/products', (req, res) => {
   })
 })
 
+router.post('/products', (req, res) => {
+  console.log('res.body', res.body)
+  // process.sql.query('INSERT INTO products VALUES ()')
+})
+
 router.get('/product-columns', (req, res) => {
   process.sql.query('SELECT * FROM product_columns', (err, rows) => {
     if (err) {
