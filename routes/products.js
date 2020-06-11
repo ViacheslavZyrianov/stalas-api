@@ -7,7 +7,7 @@ router.get('/products', (req, res) => {
   }
   const sqlQuery = [
     'SELECT COUNT(id) FROM products',
-    `SELECT * FROM products ORDER BY ${orderBy.column} ${orderBy.direction} LIMIT ${req.query.offset}, ${req.query.limit}`
+    `SELECT * FROM products WHERE name LIKE '%${req.query.search}%' ORDER BY ${orderBy.column} ${orderBy.direction} LIMIT ${req.query.offset}, ${req.query.limit}`
   ].join(';')
 
   process.sql.query(sqlQuery, (err, rows) => {
