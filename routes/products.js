@@ -5,9 +5,11 @@ router.get('/products', (req, res) => {
     column: req.query.orderBy.split(',')[0],
     direction: req.query.orderBy.split(',')[1]
   }
+  console.log('req.query.search', req.query.search)
+  const searchByNameQuery = res.query.search ? `WHERE name LIKE '%${req.query.search}%'` : ''
   const sqlQuery = [
     'SELECT COUNT(id) FROM products',
-    `SELECT * FROM products WHERE name LIKE '%${req.query.search}%' ORDER BY ${orderBy.column} ${orderBy.direction} LIMIT ${req.query.offset}, ${req.query.limit}`
+    `SELECT * FROM products ${searchByNameQuery} ORDER BY ${orderBy.column} ${orderBy.direction} LIMIT ${req.query.offset}, ${req.query.limit}`
   ].join(';')
 
   process.sql.query(sqlQuery, (err, rows) => {
